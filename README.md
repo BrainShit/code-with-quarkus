@@ -1,4 +1,9 @@
 # code-with-quarkus Project
+```
+curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "j_username=admin&j_password=admin2" -v http://localhost:8080/j_security_check
+```
+
+
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
