@@ -10,10 +10,16 @@ import io.quarkus.vertx.http.runtime.security.HttpCredentialTransport;
 import io.smallrye.mutiny.Uni;
 import io.vertx.ext.web.RoutingContext;
 
+import javax.annotation.Priority;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.util.Set;
 
+@Alternative
+@Priority(1)
+@ApplicationScoped
 public class CustomFormAuthenticationMechanism implements HttpAuthenticationMechanism {
     @Inject
     FormAuthenticationMechanism delegate;
@@ -43,11 +49,11 @@ public class CustomFormAuthenticationMechanism implements HttpAuthenticationMech
     public HttpCredentialTransport getCredentialTransport() {
         return delegate.getCredentialTransport();
     }
-
-    @Override
-    public Uni<HttpCredentialTransport> getCredentialTransport(RoutingContext context) {
-        return delegate.getCredentialTransport(context);
-    }
+//
+//    @Override
+//    public Uni<HttpCredentialTransport> getCredentialTransport(RoutingContext context) {
+//        return delegate.getCredentialTransport(context);
+//    }
 
     @Override
     public Uni<Boolean> sendChallenge(RoutingContext context) {
